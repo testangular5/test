@@ -1,0 +1,41 @@
+<div class="create-button-block">
+  <button class="create-button" (click)="openCreateForm()">Create new post</button>
+</div>
+<form *ngIf="create_form_open" (ngSubmit)="f.form.valid && onSubmitCreate()" #f="ngForm" class="create-form">
+  <div class="title-create-block"><label for="title-create-input">Title:</label>
+    <input class="title-create-input" id="title-create-input" required
+           [(ngModel)]="new_post.title" #createTitle="ngModel" name="createTitle" pattern="[A-Za-z\d\s\-']{1,}"></div>
+  <div class="body-create-block">
+    <label for="body-create-input">Body:</label>
+    <input class="body-create-input" id="body-create-input" required
+           [(ngModel)]="new_post.body" #createBody="ngModel" name="createBody" pattern="[A-Za-z\s\d\-']{1,}"></div>
+  <div class="buttons-block">
+    <button class="close-new-post" (click)="closeCreateForm()">Close</button>
+    <button class="submit-create-button" type="submit" [disabled]="!f.form.valid">Create</button>
+  </div>
+</form>
+<div class="posts-list">
+  <div *ngFor="let post of posts" class="post-item">
+    <span> Title is - {{post.title}}</span>
+    <span> Body is - {{post.body}}</span>
+    <div class="post-buttons-block">
+      <button (click)="deletePost(post.id)" class="delete-post">Delete</button>
+      <button (click)="editPost(post)" class="edit-post">Edit</button>
+      <button routerLink="/posts/{{post.id}}" routerLinkActive="active" class="retrieve-post">Retrieve</button>
+    </div>
+    <form *ngIf="post.open_form" (ngSubmit)="f.form.valid && onSubmitEdit(post)" #f="ngForm" class="edit-form">
+      <div class="title-edit-block"><label for="title-edit-input">Title:</label>
+        <input class="title-edit-input" id="title-edit-input" required
+               [(ngModel)]="post.edit_data.title" #editTitle="ngModel" name="editTitle" pattern="[A-Za-z\d\s\-']{1,}">
+      </div>
+      <div class="body-edit-block">
+        <label for="body-edit-input">Body:</label>
+        <input class="body-edit-input" id="body-edit-input" required
+               [(ngModel)]="post.edit_data.body" #editBody="ngModel" name="editBody" pattern="[A-Za-z\s\d\-']{1,}"></div>
+      <div class="buttons-block">
+        <button class="close-edit-post" (click)="closeEditForm(post)">Close</button>
+        <button class="submit-edit-button" type="submit" [disabled]="!f.form.valid">Edit</button>
+      </div>
+    </form>
+  </div>
+</div>

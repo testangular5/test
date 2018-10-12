@@ -1,0 +1,117 @@
+.posts-list {
+  max-width: 800px;
+  margin: auto;
+  .post-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: lightgray;
+    border-radius: 6px;
+    margin: 20px;
+    padding: 20px;
+    .edit-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .buttons-block {
+        margin-top: 10px;
+        .close-edit-post {
+          border-radius: 4px;
+          box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+          background-color: #d74f51;
+          color: white;
+          }
+        .submit-edit-button {
+          border-radius: 4px;
+          box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+          background-color: #3fd71a;
+          color: white;
+          &:disabled {
+            background-color: #7dd75d;
+            }
+          }
+        }
+      @each $tag in title, body {
+        .#{$tag}-edit-block {
+          input {
+            border-radius: 4px;
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);;
+            }
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          }
+        }
+      }
+    .post-buttons-block {
+      display: flex;
+      width: 100%;
+      justify-content: space-around;
+      margin-top: 10px;
+      @each $tag in delete, edit, retrieve {
+        .#{$tag}-post {
+          border-radius: 4px;
+          box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+          border: none;
+          }
+        }
+      }
+    .delete-post {
+      background-color: #d73439;
+      }
+    .edit-post {
+      background-color: #d78848;
+      }
+    .retrieve-post {
+      background-color: #5fd765;
+      }
+    }
+  }
+
+.create-button-block {
+  display: flex;
+  justify-content: center;
+  .create-button {
+    color: white;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    background-color: #00A000;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+    }
+  }
+
+.create-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .buttons-block {
+    margin-top: 10px;
+    .close-new-post {
+      border-radius: 4px;
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+      background-color: #d74f51;
+      color: white;
+      }
+    .submit-create-button {
+      border-radius: 4px;
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+      background-color: #3fd71a;
+      color: white;
+      &:disabled {
+        background-color: #7dd75d;
+        }
+      }
+    }
+  @each $tag in title, body {
+    .#{$tag}-create-block {
+      input {
+        border-radius: 4px;
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);;
+        }
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      }
+    }
+  }
